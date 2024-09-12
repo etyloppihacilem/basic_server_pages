@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Music recommendation machine</title>
+        <link href="../style.css" rel="stylesheet" />
+        <style>
+            #recommendations {
+                display: flex;
+                flex-direction: column-reverse;
+                justify-content: top;
+            }
+            #grid {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100vw;
+                justify-content: center;
+            }
+            img {
+                margin: 0.5em;
+                transition: all ease-in-out 1s;
+                max-width: 250px;
+            }
+            @media (max-width: 480px) {
+                img {
+                    max-width: 40vw;
+                }
+            }
+            audio {
+                display: none;
+            }
+        </style>
+    </head>
+    <body id="body">
+        <div id="dz-root"></div>
+        <div id="grid"></div>
+        <script src="https://e-cdn-files.dzcdn.net/js/min/dz.js"></script>
+        <script src="deezer_utils.js"></script>
+        <script>
+            var grid = document.getElementById("grid")
+            function pauseAll() {
+                var elements = document.querySelectorAll(".playingStyle")
+                elements.forEach((element) => {
+                    element.remove()
+                })
+                var elements = document.querySelectorAll("audio")
+                elements.forEach((element) => {
+                    element.pause()
+                })
+                var elements = document.querySelectorAll(".playing")
+                elements.forEach((element) => {
+                    element.setAttribute("class", "notplaying")
+                })
+            }
+            function shuffle(array) {
+                // Loop over the array from the last element to the first
+                for (let i = array.length - 1; i > 0; i--) {
+                    // Pick a random index from 0 to i
+                    let j = Math.floor(Math.random() * (i + 1))
+                    // Swap the elements at i and j
+                    ;[array[i], array[j]] = [array[j], array[i]]
+                }
+            }
+            async function loadImages() {
+                const max = 24;
+                const response = await fetch("playlist.json")
+                const playlist = await response.json()
+                shuffle(playlist)
+                console.log(playlist)
+                var length = playlist.length
+                if (length > max) length = max
+                for (var i = 0; i < length; i++) {
+                    var track = playlist[i]
+                    console.log(track.id)
+                    try {
+                        requete("/track/" + track.id, function (data) {
+                            var image = document.createElement("img")
+                            image.setAttribute("src", data.album.cover_big)
+                            image.setAttribute("alt", data.album.title)
+                            image.setAttribute("class", "notplaying")
+                            grid.appendChild(image)
+                            var son = document.createElement("audio")
+                            son.volume = 0.2
+                            grid.appendChild(son)
+                            son.setAttribute("src", data.preview)
+                            image.addEventListener("click", function (event) {
+                                if (son.paused) {
+                                    pauseAll()
+                                    event.target.setAttribute("class", "playing")
+                                    son.play()
+                                    var gris = document.createElement("style")
+                                    gris.innerText =
+                                        ".notplaying {filter: grayscale(80%) brightness(0.7) contrast(70%);}"
+                                    gris.setAttribute("class", "playingStyle")
+                                    document.getElementById("body").appendChild(gris)
+                                } else {
+                                    pauseAll()
+                                    event.target.setAttribute("class", "notplaying")
+                                }
+                            })
+                        })
+                    } catch (e) {
+                        console.log(e)
+                    }
+                }
+                var imgs = document.querySelector("#grid")
+                for (var i = imgs.children.length; i >= 0; i--) {
+                    imgs.appendChild(imgs.children[(Math.random() * i) | 0])
+                }
+            }
+            loadImages()
+        </script>
+    </body>
+</html>

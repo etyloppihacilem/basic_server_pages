@@ -1,0 +1,110 @@
+<!-- ###################################################################################################################
+
+               """          index.html
+        -\-    _|__
+         |\___/  . \        Created on 03 Aug. 2024 at 00:46
+         \     /(((/        by hmelica
+          \___/)))/         hmelica@student.42.fr
+
+################################################################################################################### -->
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>pico_bruteforce project</title>
+        <link href="../../style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="header">
+            <div>
+                <h1>Bruteforcing a 4 digit pin with a raspberry pi pico</h1>
+                <h2>
+                    Why using
+                    <a href="https://github.com/urbanadventurer/Android-PIN-Bruteforce"> a bash script</a> when you can
+                    do it whith a pico...
+                </h2>
+                <p>
+                    c | c++ | HID | Raspberry pi pico |
+                    <span id="github">
+                        <a href="https://github.com/etyloppihacilem/pico_bruteforce">GitHub repo</a></span
+                    ><span class="printonly">
+                        <a href="https://github.com/etyloppihacilem/pico_bruteforce"
+                            >https://github.com/etyloppihacilem/pico_bruteforce</a
+                        ></span
+                    >
+                </p>
+            </div>
+            <div id="whale" title="This is usually my code header :)">
+                <code>
+                    <pre>
+       """
+-\-    _|__
+ |\___/  . \
+ \     /(((/
+  \___/)))/</pre
+                    >
+                </code>
+            </div>
+        </div>
+        <hr />
+        <h3>Why on earth would someone want bruteforce a 4 digit pin</h3>
+        <p>
+            Recently, a friend and I were looking on recovering data on a Samsung S21, so the factory reset was out of
+            the question because newer Samsung phones comes with default full disk encryption using AES-256. Even after
+            reset, we would not be able to run traditional data recovery software without the 256 bits key. This key is
+            stored by the Knox chip on Samsung devices, and is randomly changed at every factory reset for obvious
+            privacy protection purposes. The 4 pin passcode to unlock the phone seem to be our only way in.
+        </p>
+        <p>
+            As phone are not supposed to let everyone trying every passcode possible in, a waiting time is implemented
+            that require the user to wait between each time. Our maximum waiting time at the moment is 16 minutes and it
+            does not seem to go up (at least we did not try enough yet...), so based on this waiting time :
+        </p>
+        <p>
+            <math display="block" class="tml-display" style="display: block math">
+                <mrow>
+                    <mfrac>
+                        <mrow>
+                            <mn>10000</mn>
+                            <mo>×</mo>
+                            <mn>16</mn>
+                        </mrow>
+                        <mrow>
+                            <mn>24</mn>
+                            <mo>×</mo>
+                            <mn>60</mn>
+                        </mrow>
+                    </mfrac>
+                    <mo>=</mo>
+                    <mn>111.11</mn>
+                    <mi>.</mi>
+                    <mi>.</mi>
+                    <mi>.</mi>
+                </mrow>
+            </math>
+        </p>
+        <p>
+            111 days is not so bad, so we decided to give it a try. Using a sorted list of 4 digit codes by probability,
+            we decided to give it a try using a raspberry pi pico.
+        </p>
+        <h3>But why using this complicated (yet so cute) microcontroller</h3>
+        <p>
+            I lied, using a raspberry pico is not complicated, it is really versatile as it can run python, c and c++
+            programs.
+            <br />
+            However, understanding how HID (Human Interface Devices, Human Input Device, Hardware Interface Device,
+            etc...) codes are used to emulate a key press on a computer was an unexpected source of fun.
+        </p>
+        <p>
+            A pico was our way to go, because we wanted to implement a light sensor to detect when the phone was
+            unlocked, by seeing the screen lighting up longer than when unlock fails. Even if we did not had time to
+            implement this yet, we prepared the pico to have an extension. GPIO 25 is HIGH when code is being typed and
+            drops down when the keyboard ends its emulation. That way, we could add another pico (that could read the
+            UART out to get the last code entered) to monitor the success of our bruteforce, without having stop the
+            bruteforce process.
+        </p>
+        <footer><a href="../../legals.html">Mentions légales</a> (bc I'm french)</footer>
+    </body>
+</html>

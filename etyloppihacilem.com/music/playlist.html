@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="./style.css" rel="stylesheet" />
+    </head>
+    <body id="body">
+        <!--         <header> -->
+        <!--             <div> -->
+        <!--                 <h1>JSON playlist editor</h1> -->
+        <!--                 <h2>Open, create and edit JSON playlists</h2> -->
+        <!--             </div> -->
+        <!--             <div id="whale" title="This is usually my code header :)"> -->
+        <!--                 <code> -->
+        <!--                     <pre> -->
+        <!--        """ -->
+        <!-- -\-    _|__ -->
+        <!--  |\___/  . \ -->
+        <!--  \     /(((/ -->
+        <!--   \___/)))/</pre -->
+        <!--                     > -->
+        <!--                 </code> -->
+        <!--             </div> -->
+        <!--         </header> -->
+        <!--         <hr /> -->
+        <div id="dz-root"></div>
+        <div class="split">
+            <div class="split1">
+                <div id="options">
+                    <h2>Options</h2>
+                    <div>
+                        <input type="file" name="load_file" id="load_file" value="Load file" accept=".json" />
+                        <button type="button" id="load_button">Load file</button>
+                        <button type="button" id="save_button">Save file</button>
+                    </div>
+                    <h3>Metadata</h3>
+                    <div id="check_options">
+                        <div>
+                            <input type="checkbox" name="md_id" id="md_id" checked disabled />
+                            <label for="md_id" title="Id is needed to find track again.">Id</label>
+                            <input type="checkbox" name="md_isrc" id="md_isrc" />
+                            <label for="md_isrc" title="International Standard Recording Code">ISRC</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="md_track" id="md_track" checked />
+                            <label for="md_track">Title</label>
+                            <input type="checkbox" name="md_album" id="md_album" checked />
+                            <label for="md_album">Album</label>
+                            <input type="checkbox" name="md_artist" id="md_artist" checked />
+                            <label for="md_artist">Artist</label>
+                            <input type="checkbox" name="md_date" id="md_date" />
+                            <label for="md_date">Date</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="md_dzurl" id="md_dzurl" />
+                            <label for="md_dzurl">Deezer url</label>
+                            <input type="checkbox" name="md_cover" id="md_cover" />
+                            <label for="md_cover">Cover url</label>
+                            <select id="cover_size">
+                                <option value="small">Small</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="big">Big</option>
+                                <option value="xl">XL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p>
+                        <button type="button" id="empty">Empty playlist</button>
+                    </p>
+                </div>
+                <div>
+                    <h2>Playlist</h2>
+                    <p id="empty_message">Nothing here yet, add a song or open a file.</p>
+                    <div id="playlist_content"></div>
+                </div>
+            </div>
+            <div class="split2">
+                <div id="search_util">
+                    <h2>Search</h2>
+                    <!-- <div> -->
+                    <!--     Search : <span id="sel_all" class="select">All</span> | -->
+                    <!--     <span id="sel_artist" class="select">Artists</span> | -->
+                    <!--     <span id="sel_album" class="select">Albums</span> | -->
+                    <!--     <span id="sel_song" class="select selected">Songs</span> -->
+                    <!-- </div> -->
+                    <form id="search_field">
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            value=""
+                            placeholder="Song, artist, album..."
+                            required
+                        />
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+                <div id="results"></div>
+            </div>
+        </div>
+        <footer>
+            <p><a href="./legals.html">Mentions légales</a> (bc I'm french)</p>
+            <p>En utilisant cette page, vous consentez à l'utilisation de cookies necessaires à son fonctionnement.</p>
+        </footer>
+        <script src="https://e-cdn-files.dzcdn.net/js/min/dz.js"></script>
+        <script src="deezer_utils.js"></script>
+        <script src="playlist.js"></script>
+    </body>
+</html>

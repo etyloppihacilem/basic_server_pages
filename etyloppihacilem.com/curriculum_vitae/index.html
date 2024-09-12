@@ -1,0 +1,139 @@
+<!-- ###################################################################################################################
+
+               """          index.html
+        -\-    _|__
+         |\___/  . \        Created on 03 Aug. 2024 at 00:46
+         \     /(((/        by hmelica
+          \___/)))/         hmelica@student.42.fr
+
+################################################################################################################### -->
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Hippolyte Melica</title>
+        <link href="../style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="header">
+            <div>
+                <h1>Hippolyte Melica</h1>
+                <h2>Curriculum Vitae</h2>
+                <p>
+                    <span id="age"></span> yo. | Speaking French, English and German | Based in Paris |
+                    <span id="github"> <a href="https://github.com/etyloppihacilem">GitHub</a></span
+                    ><span class="printonly">
+                        <a href="https://github.com/etyloppihacilem">https://github.com/etyloppihacilem/</a></span
+                    >
+                </p>
+                <p class="printonly" id="version_reminder">
+                    Document saved on <span id="version"></span>. <br />An updated version could be aviable on
+                    <a href="https://etyloppihacilem.com/curriculum_vitae/"
+                        >https://etyloppihacilem.com/curriculum_vitae/</a
+                    >.
+                </p>
+                <script>
+                    var current = new Date()
+                    var birthday = new Date("September 1, 2004") // this is not my birthday btw
+                    var elapsed = current - birthday
+                    elapsed /= 1000 * 3600 * 24 * 365.25
+                    var age = Math.floor(elapsed)
+                    document.getElementById("age").textContent = age
+                    document.getElementById("version").textContent = current.toDateString()
+                </script>
+            </div>
+            <div id="whale" title="This is usually my code header :)">
+                <code>
+                    <pre>
+       """
+-\-    _|__
+ |\___/  . \
+ \     /(((/
+  \___/)))/</pre
+                    >
+                </code>
+            </div>
+        </div>
+        <hr />
+        <h3>Ongoing projects</h3>
+        <ul>
+            <li>
+                HTTP and websocket server for Raspberry pi Pico W <br />
+                <em>c++, WebSocket, HTTP, TCP</em>
+            </li>
+            <li>Library for AS3935 sensor on Raspberry pi Pico <br /><em>c++, c, SPI, embedded system</em></li>
+            <li>Modern modem manager for Linux <br /><em>c++, Hayes AT command set</em></li>
+        </ul>
+        <h3>Formation</h3>
+        <ul>
+            <li>
+                <p>
+                    Dual degree in electronics and law <br />
+                    Sorbonne Université and Université Panthéon Assas <br />
+                    3rd year (in progress)
+                </p>
+            </li>
+            <li>
+                <p>
+                    École 42 <br />
+                    42 Paris <br />
+                    3rd year (in progress)
+                </p>
+            </li>
+            <li>
+                <p>
+                    Baccalauréat <br />
+                    With highest honour <br />
+                    2022
+                </p>
+            </li>
+            <li>
+                <p>
+                    Abibac <br />
+                    French-German dual diploma (Abitur)<br />
+                    2022
+                </p>
+            </li>
+            <li>
+                <p>
+                    TOEFL <br />
+                    2021
+                </p>
+            </li>
+            <li>
+                <p>
+                    Deutsches Sprachdiplom 1<br />
+                    Kultusministerkonferenz<br />
+                    2019
+                </p>
+            </li>
+            <li>
+                <p>
+                    Cambridge English<br />
+                    2019
+                </p>
+            </li>
+        </ul>
+        <h3>Interests</h3>
+        <p>
+            In order to obtain several baccalaureates and diplomas in three different languages in the same year and
+            currently pursue several degree courses at the same time, I need to be highly efficient, organized and
+            relentless in my work. I have a sense of civic duty, mutual aid and self-sacrifice.
+        </p>
+        <p>
+            As a leader, I know how to make my enthusiasm contagious, and how to create and manage a team to get results
+            faster. When it comes to setting up a project and meeting challenges, I'm very good at adapting to the human
+            factor as well as the technological one. This applies to the cultural sphere (plays or participation in the
+            48h short film challenge contest) or robotics competitions and, finally, to the challenges inherent in my
+            three current courses of study in law, electronics and computer science.
+        </p>
+        <p>
+            My accomplishments have been driven by determination and an irrepressible thirst for learning. I'd like to
+            put the skills I've acquired in the fields of software development and cyber security to good use, as both
+            allows me to evolve and constantly acquire new skills.
+        </p>
+        <footer><a href="../legals.html">Mentions légales</a> (bc I'm french)</footer>
+    </body>
+</html>
